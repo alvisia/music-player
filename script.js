@@ -13,25 +13,30 @@ const nextBtn = document.getElementById('next');
 // Music
 const songs = [
     {
-        name: 'jacinto-1',
-        displayName: 'Electric Chill Machine',
-        artist: 'Jacinto Design',
+        name: 'alexgrohl-punk-rock',
+        displayName: 'Punk Rock',
+        artist: 'AlexGrohl',
     },
     {
-        name: 'jacinto-2',
-        displayName: 'Seven Nation Army (Remix)',
-        artist: 'Jacinto Design',
+        name: 'dimmysad-best-day-of-my-life',
+        displayName: 'Best Day Of My Life',
+        artist: 'DIMMYSAD',
     },
     {
-        name: 'jacinto-3',
-        displayName: 'Goodnight, Disco Queen',
-        artist: 'Jacinto Design',
+        name: 'keyframe_audio-jacket',
+        displayName: 'Jacket',
+        artist: 'Keyframe_Audio',
     },
     {
-        name: 'metric-1',
-        displayName: 'Front Row (Remix)',
-        artist: 'Metric/Jacinto Design',
+        name: 'nastelbom-driving',
+        displayName: 'Driving',
+        artist: 'NastelBom',
     },
+    {
+        name: 'song_writing_by_brad-groundhog-day',
+        displayName: 'Groundhog Day',
+        artist: 'Song_Writing_by_Brad',
+    }
 ];
 
 // Check if playing
