@@ -2,6 +2,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 
+:root {
+  --background: #0a0a0a;
+  --player-bg: #1a1a1a;
+  --accent: #cc0000;
+  --text-primary: #ffffff;
+  --text-secondary: #aaaaaa;
+  --progress-bg: #333333;
+  --icon-color: #aaaaaa;
+  --shadow: rgba(204, 0, 0, 0.3);
+}
+
 html {
   box-sizing: border-box;
 }
@@ -9,7 +20,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: #c9ced3;
+  background: var(--background);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,9 +31,9 @@ body {
 .player-container {
   height: 500px;
   width: 400px;
-  background-color: #e7e7e7;
+  background-color: var(--player-bg);
   border-radius: 20px;
-  box-shadow: 0 15px 30px 5px rgba(0, 0, 0, 0.3); /* box-shadow: horizontal offset (left/right), vertical offset (top/bottom), opacity (0 = solid), spread (how far out); */ 
+  box-shadow: 0 15px 30px 5px var(--shadow); /* box-shadow: horizontal offset (left/right), vertical offset (top/bottom), opacity (0 = solid), spread (how far out); */ 
 }
 
 .img-container {
@@ -38,13 +49,14 @@ body {
   width: 100%;
   object-fit: cover;
   border-radius: 20px;
-  box-shadow: 0 5px 30px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 30px 5px var(--shadow);
 }
 
 h2 {
   font-size: 25px;
   text-align: center;
   margin: 0;
+  color: var(--text-primary);
 }
 
 h3 {
@@ -52,11 +64,12 @@ h3 {
   text-align: center;
   font-weight: 400;
   margin: 5px 0 0;
+  color: var(--text-secondary);
 }
 
 /* Progress */
 .progress-container {
-  background: #fff;
+  background: var(--progress-bg);
   border-radius: 5px;
   cursor: pointer;
   margin: 40px 20px;
@@ -65,7 +78,7 @@ h3 {
 }
 
 .progress {
-  background: #242323;
+  background: var(--accent);
   border-radius: 5px;
   height: 100%;
   width: 0%;
@@ -77,6 +90,7 @@ h3 {
   top: -25px;
   display: flex;
   justify-content: space-between;
+  color: var(--text-secondary);
 }
 
 /* Controls */
@@ -89,7 +103,7 @@ h3 {
 
 .fa-solid {
   font-size: 30px;
-  color: rgb(129, 129, 129);
+  color: var(--icon-color);
   margin-right: 30px;
   cursor: pointer;
   user-select: none;
@@ -97,6 +111,7 @@ h3 {
 
 .fa-solid:hover {
   filter: brightness(80%);
+  color: var(--accent);
 }
 
 .main-button {
