@@ -48,15 +48,16 @@ function playSong() {
     playBtn.classList.replace('fa-play', 'fa-pause');
     playBtn.setAttribute('title', 'Pause');
     music.play();
+    image.classList.add('playing');
 }
 
 // Pause
 function pauseSong() {
     isPlaying = false;
     playBtn.classList.replace('fa-pause', 'fa-play');
-        playBtn.setAttribute('title', 'Play');
-
+    playBtn.setAttribute('title', 'Play');
     music.pause();
+    image.classList.remove('playing');
 }
 
 // Play or Pause Event Listener

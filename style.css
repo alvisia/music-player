@@ -33,7 +33,7 @@ body {
   width: 400px;
   background-color: var(--player-bg);
   border-radius: 20px;
-  box-shadow: 0 15px 30px 5px var(--shadow); /* box-shadow: horizontal offset (left/right), vertical offset (top/bottom), opacity (0 = solid), spread (how far out); */ 
+  box-shadow: 0 15px 30px 5px var(--shadow); /* box-shadow: horizontal offset (left/right), vertical offset (top/bottom), blur radius (0 = sharp solid), spread (how far out); */ 
 }
 
 .img-container {
@@ -50,6 +50,22 @@ body {
   object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 5px 30px 5px var(--shadow);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 5px 30px 5px rgba(204, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 5px 45px 15px rgba(204, 0, 0, 0.7);
+  } 
+  100% {
+    box-shadow: 0 5px 30px 5px rgba(204, 0, 0, 0.3);
+  }
+}
+
+.playing {
+  animation: pulse 1.5s infinite;
 }
 
 h2 {
