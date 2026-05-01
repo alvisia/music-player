@@ -38,8 +38,12 @@ canvas {
 }
 
 .player-container {
-  height: 500px;
-  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  width: 90vw;
+  max-width: 400px;
+  height: auto;
   background-color: var(--player-bg);
   border-radius: 20px;
   box-shadow: 0 15px 30px 5px var(--shadow); /* box-shadow: horizontal offset (left/right), vertical offset (top/bottom), blur radius (0 = sharp solid), spread (how far out); */ 
@@ -120,10 +124,12 @@ h3 {
 
 /* Controls */
 .player-controls {
-  position: relative;
-  top: -15px;
-  left: 110px;
-  width: 225px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5vw;
+  width: 100%;
+  margin: 2vh auto;
 }
 
 .fa-solid {
@@ -134,9 +140,8 @@ h3 {
   user-select: none;
 }
 
-.fa-solid:hover {
-  filter: brightness(80%);
-  color: var(--accent);
+.fa-solid.fa-forward {
+    margin-right: 0;
 }
 
 .main-button {
@@ -146,13 +151,14 @@ h3 {
 }
 
 /* Media Query: iPhone (Vertical) */
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 600px) {
   .player-container {
     width: 95vw;
   }
 
   .img-container {
-    left: 29px;
+    left: 0;
+    margin: 0 auto;
   }
 
   h2 {
@@ -162,9 +168,11 @@ h3 {
   h3 {
     font-size: 15px;
   }
+}
 
-  .player-controls {
-    top: -10px;
-    left: 100px;
+@media (hover: hover) {
+  .fa-solid:hover {
+    filter: brightness(80%);
+    color: var(--accent);
   }
 }

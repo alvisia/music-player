@@ -46,15 +46,20 @@ const songs = [
 let isPlaying = false; // Check if playing
 let songIndex = 0; // Current Song
 let isVisualizerReady = false;
+const isMobile = matchMedia('(max-width: 600px)');
 
 // Audio Visualizer
 const audioContext = new AudioContext(); // Browser's audio processing system
 const analyser = audioContext.createAnalyser(); // Extracts frequency data in real time
-analyser.fftSize = 256; // Number of frequency bars = fftSize / 2 (128 bars)
-const barCount = analyser.frequencyBinCount; // Total number of bars to draw
-const frequencyDataArray = new Uint8Array(barCount); // Holds frequency values (0-255) for each bar
+// Number of frequency bars = fftSize / 2
+analyser.fftSize = isMobile.matches ? 128 : 512;
+
+let barCount = analyser.frequencyBinCount; // Total number of bars to draw
+let frequencyDataArray = new Uint8Array(barCount); // Holds frequency values (0-255) for each bar
 let animationId; // Store requestAnimationFrame() ID for cancellation
 let barHeightsArray = new Array(barCount).fill(0); // Tracks bar heights for smooth fade out on pause
+let barWidthMultiplier = isMobile.matches ? 1.5 : 1.7;
+let barHeightDivisor = isMobile.matches ? 2 : 1.5;
 
 // Play
 function playSong() {
@@ -160,17 +165,21 @@ function drawBars() {
     // Clear canvas with background color
     canvasCtx.fillStyle = '#0a0a0a';
     canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
-    const barWidth = canvas.width / barCount * 3; // Get width of each bar
+    const barWidth = canvas.width / barCount * barWidthMultiplier; // Get width of each bar
     // Draw each bar with current frequency data
     frequencyDataArray.forEach((value, i) => {
         // When music playing update bar height, when paused gradually shrink bars
         if (isPlaying) {
-            barHeightsArray[i] = value;
+            barHeightsArray[i] = value / barHeightDivisor;
         } else {
             barHeightsArray[i] *= 0.9;
         }
         const barHeight = barHeightsArray[i];
-        canvasCtx.fillStyle = `rgb(${value}, 0, 0)`;
+        if (i % 2 === 0) {
+            canvasCtx.fillStyle = `rgb(${value}, 0, 0)`;
+        } else {
+            canvasCtx.fillStyle = `rgb(128, 0, 32)`;
+        }
         canvasCtx.fillRect(i * barWidth, canvas.height - barHeight, barWidth, barHeight);
     });
     // drawBars every frame & store requestAnimationFrame ID
@@ -187,3 +196,7 @@ nextBtn.addEventListener('click', nextSong);
 music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressBar);
 progressContainer.addEventListener('click', setProgressBar);
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
