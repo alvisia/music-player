@@ -10,6 +10,9 @@ const durationEl = document.getElementById('duration');
 const prevBtn = document.getElementById('prev');
 const playBtn = document.getElementById('play');
 const nextBtn = document.getElementById('next');
+const volumeIcon = document.getElementById('volume-icon');
+const volumeRange = document.querySelector('.volume-range');
+const volumeBar = document.querySelector('.volume-bar');
 const canvas = document.getElementById('visualizer');
 const canvasCtx = canvas.getContext('2d');
 
@@ -45,6 +48,8 @@ const songs = [
 // State
 let isPlaying = false; // Check if playing
 let songIndex = 0; // Current Song
+let lastVolume = 1;
+let lastVolumeIcon = 'fa-solid fa-volume-up';
 let isVisualizerReady = false;
 const isMobile = matchMedia('(max-width: 600px)');
 
@@ -149,6 +154,47 @@ function setProgressBar(event) {
     music.currentTime = (clickX / width) * duration; // Convert click percentage to seconds
 }
 
+// Volume Bar
+function changeVolume(event) {
+    let volume = event.offsetX / volumeRange.offsetWidth;
+    // Rounding Volume Up or Down
+    if (volume < 0.1) {
+        volume = 0;
+    }
+    if (volume > 0.9) {
+        volume = 1;
+    }
+    volumeBar.style.width = `${volume * 100}%`;
+    music.volume = volume;
+    // Change Icon Depending on Volume
+    volumeIcon.className = '';
+    if (volume > 0.7) {
+        volumeIcon.classList.add('fa-solid', 'fa-volume-up');
+    } else if (volume < 0.7 && volume > 0) {
+        volumeIcon.classList.add('fa-solid', 'fa-volume-down');
+    } else if (volume === 0) {
+        volumeIcon.classList.add('fa-solid', 'fa-volume-off');
+    }
+    lastVolume = volume;
+}
+
+// Mute/Unmute
+function toggleMute() {
+    if (music.volume > 0) {
+        lastVolume = music.volume;
+        lastVolumeIcon = volumeIcon.className;
+        music.volume = 0;
+        volumeBar.style.width = '0';
+        volumeIcon.className = 'fa-solid fa-volume-mute';
+        volumeIcon.setAttribute('title', 'Unmute');
+    } else {
+        music.volume = lastVolume;
+        volumeBar.style.width = `${lastVolume * 100}%`;
+        volumeIcon.className = lastVolumeIcon;
+        volumeIcon.setAttribute('title', 'Mute');
+    }
+}
+
 // Connect audio element to analyser node and start visualizer
 function setupVisualizer() {
     canvas.width = window.innerWidth;
@@ -196,6 +242,8 @@ nextBtn.addEventListener('click', nextSong);
 music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressBar);
 progressContainer.addEventListener('click', setProgressBar);
+volumeRange.addEventListener('click', changeVolume);
+volumeIcon.addEventListener('click', toggleMute);
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;

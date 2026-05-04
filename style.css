@@ -123,11 +123,19 @@ h3 {
 }
 
 /* Controls */
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
 .player-controls {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5vw;
+  gap: 1.5rem;
   width: 100%;
   margin: 2vh auto;
 }
@@ -135,19 +143,47 @@ h3 {
 .fa-solid {
   font-size: 30px;
   color: var(--icon-color);
-  margin-right: 30px;
   cursor: pointer;
   user-select: none;
-}
-
-.fa-solid.fa-forward {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 .main-button {
   font-size: 40px;
   position: relative;
   top: 3px;
+}
+
+/* Volume */
+.volume {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.volume-range {
+  width: 40%;
+  max-width: 160px;
+  min-width: 100px;
+  height: 4px;
+  background: var(--progress-bg);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.volume-bar {
+  background: var(--icon-color);
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.2s ease-in;
+}
+
+.volume-bar:hover {
+  background: var(--accent);
 }
 
 /* Media Query: iPhone (Vertical) */
