@@ -1,50 +1,43 @@
 # Music Player
 
-A custom-built music player created using **HTML, CSS, and JavaScript**, featuring a real-time audio visualizer, interactive controls, and responsive UI design.
-
----
+A responsive music player built with HTML, CSS, and JavaScript. It includes a real-time audio visualizer, volume controls, and a responsive UI design for mobile and desktop.
 
 ## Live Demo
 
 https://alvisia.github.io/music-player/
 
----
-
 ## Features
 
-* Play / Pause music
-* Next / Previous track
-* Interactive progress bar
-* Click-to-seek functionality on progress bar
-* Time tracking (current & duration)
-* Custom volume slider
-* Mute / Unmute functionality
-* Dynamic volume icon (high / low / mute)
-* Real-time audio visualizer using the Web Audio API
-* Responsive design for mobile & desktop
-
----
+- Play / Pause music
+- Next / Previous track controls
+- Interactive progress bar
+- Click-to-seek functionality on the progress bar
+- Current time and duration display
+- Custom volume slider
+- Mute / Unmute functionality
+- Dynamic volume icon based on volume level
+- Real-time audio visualizer using the Web Audio API
+- Smooth visualizer animation when music is paused
+- Responsive layout for mobile & desktop
 
 ## Technologies Used
 
-* HTML5
-* CSS3 (Flexbox, Responsive Design)
-* JavaScript (ES6)
-* Web Audio API
-* Canvas API
-
----
+- HTML5
+- CSS3 (Flexbox, Responsive Design)
+- JavaScript
+- Web Audio API
+- Canvas API
+- GitHub Pages
 
 ## What I Added
 
-This project was originally based on a tutorial, but I extended it with:
+This project started as a tutorial project, but I customized and expanded it by:
 
-* Implemented a real-time audio visualizer using the Web Audio API
-* Built a custom volume slider with mute functionality and dynamic icon states
-* Improved layout by using a flexible, responsive design instead of fixed positioning
-* Enhanced UI/UX with improved spacing, structure, and animations for better mobile compatibility
-
----
+- Implemented a real-time audio visualizer using the Web Audio API and Canvas API
+- Added smooth visualizer behavior so the bars fade down when the song is paused
+- Built a custom volume slider with mute functionality and dynamic volume icon states
+- Reworked the layout using flexible, responsive CSS instead of fixed positioning
+- Improved the UI with custom styling, spacing, animations, and mobile responsiveness
 
 ## How to Run Locally
 
